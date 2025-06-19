@@ -32,12 +32,12 @@ class RolloutGenerator(object):
 
     def generator(self, step_signal: Value, env: Env, agent: Agent,
                   episode_length: int, timesteps: int,
-                  eval: bool, eval_demo_seed: int = 0,
+                  eval: bool, eval_demo_seed: int = 0, variation_id: int = -1,
                   record_enabled: bool = False,
                   replay_ground_truth: bool = False):
 
         if eval:
-            obs = env.reset_to_demo(eval_demo_seed)
+            obs = env.reset_to_demo(eval_demo_seed, variation_id)
             # get ground-truth action sequence
             if replay_ground_truth:
                 actions = env.get_ground_truth_action(eval_demo_seed)
